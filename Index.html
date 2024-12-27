@@ -31,7 +31,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        pointer-events: none; /* Allows interaction with elements underneath */
+        pointer-events: none;
         z-index: 1;
       }
 
@@ -42,7 +42,7 @@
             background-color: gold;
             border-radius: 50%;
             animation: confettiFall linear infinite;
-             z-index: 100;
+            z-index: 100;
         }
 
        @keyframes confettiFall {
@@ -52,7 +52,7 @@
                 }
             100% {
                 transform: translateY(100vh) rotate(360deg);
-                 opacity: 0.5;
+                opacity: 0.5;
             }
         }
 
@@ -61,18 +61,23 @@
              text-align: center;
             font-family: 'Baloo Bhaijaan 2', cursive;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            margin-bottom: 20px;
+             margin-bottom: 10px;
+
 
         }
         h1 {
-             font-size: 3.5em;
+            font-size: 3.5em;
+             text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #0ff, 0 0 40px #0ff, 0 0 50px #0ff, 0 0 60px #0ff, 0 0 70px #0ff;
            }
          h2{
                 font-size: 2.8em;
+             text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #0f0, 0 0 40px #0f0, 0 0 50px #0f0, 0 0 60px #0f0, 0 0 70px #0f0;
            }
            h3{
              font-size: 2em;
-              margin-top: 10px;
+              margin-top: 5px;
+               text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #f00, 0 0 40px #f00, 0 0 50px #f00, 0 0 60px #f00, 0 0 70px #f00;
+
            }
 
       .greeting-container {
@@ -80,10 +85,10 @@
         z-index: 2;
           padding: 20px;
         text-align: center;
-         background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
         border-radius: 10px;
-          margin: 10px auto;
-          max-width: 80%;
+        margin: 10px auto;
+        max-width: 80%;
             
         }
         
@@ -91,7 +96,7 @@
            
                 display: flex;
                 justify-content: center;
-                 margin-top: 20px;
+                margin-top: 20px;
 
             }
             
@@ -100,15 +105,15 @@
                   border: 1px solid rgba(255,255,255, 0.4);
                 color: white;
                 border-radius: 5px;
-                 padding: 10px 20px;
+                padding: 10px 20px;
                 margin: 0 10px;
                 text-decoration: none;
-                   transition: 0.3s ease-in-out;
+                transition: 0.3s ease-in-out;
             }
           .share-buttons a:hover {
                 background: rgba(255,255,255, 0.3);
                 
-             }
+            }
 
             .share-buttons img {
                 width: 20px;
@@ -124,7 +129,7 @@
         width: 100%;
         height: 100%;
         pointer-events: none;
-          z-index: 1;
+        z-index: 1;
       }
       .firework {
           position: absolute;
@@ -163,30 +168,36 @@
                   50% { transform: translateY(-10px) translateX(-10px) rotate(-10deg); }
                     75% { transform: translateY(15px) translateX(10px) rotate(10deg); }
                 }
-         .m1, .m2 {
-            position:fixed;
-              top: 10%;
-            width:auto;
-            height:auto;
+        .m2 {
+            position: fixed;
+            top: 0; /* Changed to top 0 */
+            left: 0; /* Changed to left 0 */
+            width: 100%; /* Expand to screen width */
+            height: 100%; /* Expand to screen height */
              z-index: 2;
-         }
-         .m1{left: 1%;}
-        .m2{right: 1%;}
+            pointer-events: none; /* To prevent it from blocking interaction */
+        }
        #photo-upload-container {
-                margin-top: 20px;
+                margin-top: 10px;
+                 text-align: center;
             }
 
             #photo-upload-container input[type="file"] {
-                display: block;
+                display: inline-block;
                 margin: 10px auto;
+                 background-color: white;
+                color: black;
+                padding: 5px 10px;
+                border-radius: 5px;
             }
 
             #photo-upload-container img {
                 max-width: 150px;
                 max-height: 150px;
                 display: block;
-                margin: 10px auto;
+                 margin: 10px auto;
                 border-radius: 50%;
+                object-fit: cover;
             }
     </style>
 </head>
@@ -197,9 +208,8 @@
     </audio>
     <div class="confetti-container"></div>
     <div class="firework-container"></div>
-    
-    <img src="images/decorative_element1.gif" class="m1" alt="decorative element 1">
-    <img src="images/decorative_element2.gif" class="m2" alt="decorative element 2">
+     <img src="images/decorative_element2.gif" class="m2" alt="decorative element 2">
+
      <div class="greeting-container">
          
         <h1 id="userNameDisplay">
@@ -209,15 +219,17 @@
                 document.write(nameDisplay);
             </script>
         </h1>
-        <h2>नया साल मुबारक हो!</h2>
-        <h3> आपको नया साल की हार्दिक शुभकामनाएं!</h3>
-         <img src="images/new_year_animation.gif" alt="New Year Animation" style="width: 250px; margin: 20px auto; display: block;">
-    
-        <h3>नया साल आपके जीवन में खुशियाँ लाए!</h3>
-         <p style="font-size: 16px; margin: 20px 0;">
-            <strong style="font-size: 1.2em;"> नया साल, नई उमंग, चलो मनाएं!</strong>
+        <div id="photo-upload-container">
+              <input type="file" id="photo-upload" accept="image/*" onchange="loadPhoto(event)" style="display: block;margin:10px auto;"/>
+              <img id="uploaded-photo" src="#" alt="Uploaded Photo" style="display:none;"/>
+        </div>
+        
+         <h2>नया साल मुबारक हो!</h2>
+        <h3>  नई उम्मीदें, नए सपने, नया साल मुबारक!</h3>
+         <p style="font-size: 16px; margin: 10px 0;">
+            <strong style="font-size: 1.2em;">आओ मिलकर करें नए साल का स्वागत!</strong>
             </p>
-             <p style="font-size: 18px;color:#000;">
+         <p style="font-size: 18px;color:#000;">
                <b style="color: #ff0000;"> की तरफ से - </b>
                 <script>
                     document.write(name ? name : "किसी प्रिय");
@@ -225,17 +237,12 @@
            </p>
           <p>
             <b style="font-size: 1.2em;">Shayari:</b> <br>
-              नया साल आया है, खुशियाँ लाया है,<br>
-                गम दूर हुआ, चलो जश्न मनाएं!
+                हर साल आता है, हर साल जाता है, <br>
+              इस नए साल में, खुशियों का साज़ बजता है!
           </p>
      
-       <div id="photo-upload-container">
-              <label for="photo-upload" style="display: block; color: white; text-align: center;">अपनी फोटो लगाएं:</label>
-              <input type="file" id="photo-upload" accept="image/*" onchange="loadPhoto(event)" style="display: block;margin:10px auto;"/>
-              <img id="uploaded-photo" src="#" alt="Uploaded Photo" style="display:none;"/>
-        </div>
      <div class="share-buttons">
-             <a href="whatsapp://send?text=*नया साल मुबारक हो!*  आपको नया साल की हार्दिक शुभकामनाएं! नया साल आपके जीवन में खुशियाँ लाए! नया साल, नई उमंग, चलो मनाएं! Touch this Blue Line  Enter Your Name and See Magic 👉[Your Website Link Here]" data-action="share/whatsapp/share">
+             <a href="whatsapp://send?text=*नया साल मुबारक हो!* नई उम्मीदें, नए सपने, नया साल मुबारक! आओ मिलकर करें नए साल का स्वागत!  Touch this Blue Line  Enter Your Name and See Magic 👉[Your Website Link Here]" data-action="share/whatsapp/share">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/2044px-WhatsApp.svg.png" alt="WhatsApp"> शेयर करें
             </a>
            <a href="https://www.facebook.com/sharer/sharer.php?u=[Your Website Link Here]" target="_blank">
@@ -244,7 +251,7 @@
         </div>
 
     </div>
- <img src="images/diya_float1.gif" class="floating-diya" style="top: 10%; left:10%"  alt="Diya">
+    <img src="images/diya_float1.gif" class="floating-diya" style="top: 10%; left:10%"  alt="Diya">
     <img src="images/diya_float2.gif" class="floating-diya" style="bottom: 10%; right:10%" alt="Diya">
     <script>
          // Function to create random confetti
