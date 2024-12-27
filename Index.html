@@ -256,6 +256,9 @@
              z-index: 999;
                display: none; /* Initially hidden */
                cursor: pointer;
+                 border: 2px solid white;
+                border-radius: 10px;
+               box-shadow: 0 0 10px white, 0 0 20px white;
          }
     </style>
 </head>
@@ -348,7 +351,7 @@
                 stickyButton.style.display = 'block'
               }
               if(photo){
-                 uploadedPhoto.src = photo;
+                 uploadedPhoto.src = decodeURIComponent(photo);
                   uploadedPhoto.style.display = 'block';
                  document.getElementById('photo-upload-container').classList.add('photo-selected')
               }
@@ -385,13 +388,14 @@
            const photoContainer = document.getElementById('photo-upload-container');
             const uploadedPhoto = document.getElementById('uploaded-photo');
            const file = event.target.files[0];
-
+            const urlParams = new URLSearchParams(window.location.search);
+             let name = urlParams.get('name');
           const reader = new FileReader();
            reader.onload = function(e){
                 uploadedPhoto.src = e.target.result;
                uploadedPhoto.style.display = 'block';
                 photoContainer.classList.add('photo-selected');
-               let newShareLink = `?name=${new URLSearchParams(window.location.search).get('name')}&photo=${encodeURIComponent(e.target.result)}`;
+                  let newShareLink = `?name=${name}&photo=${encodeURIComponent(e.target.result)}`;
                  document.querySelectorAll('.share-buttons a').forEach(a =>{
                     let currentHref = a.href;
                     if(currentHref.includes('whatsapp') || currentHref.includes('facebook')){
