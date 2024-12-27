@@ -217,6 +217,45 @@
               text-shadow: 0 0 5px #fff, 0 0 10px #fff;
               line-height: 1.5;
             }
+           .play-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.9); /* Dark overlay */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+            }
+
+            .play-button {
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 20px;
+
+             }
+
+          .play-button span {
+            font-size: 2.5em;
+            font-family: 'Baloo Bhaijaan 2', cursive;
+           text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #0ff, 0 0 40px #0ff, 0 0 50px #0ff, 0 0 60px #0ff, 0 0 70px #0ff;
+          }
+          .sticky-button {
+             position: fixed;
+             bottom: 0;
+             left: 0;
+              width: 100%;
+              background-color: rgba(0, 0, 0, 0.7);
+                color: white;
+             text-align: center;
+              padding: 10px;
+             z-index: 999;
+               display: none; /* Initially hidden */
+               cursor: pointer;
+         }
     </style>
 </head>
 <body>
@@ -227,8 +266,12 @@
     <div class="confetti-container"></div>
     <div class="firework-container"></div>
      <img src="images/decorative_element2.gif" class="m2" alt="decorative element 2">
-
-     <div class="greeting-container">
+    <div class="play-overlay">
+        <button class="play-button">
+             <span>क्लिक करें और जादू देखें</span>
+          </button>
+    </div>
+     <div class="greeting-container" style="display: none;">
           <h1 id="userNameDisplay" class="text-shaking">
 
         </h1>
@@ -263,6 +306,7 @@
             </a>
         </div>
     </div>
+     <div class="sticky-button">अपना नाम से बनाए</div>
     <script>
          // Function to create random confetti
         function createConfetti() {
@@ -289,19 +333,27 @@
         }
          createConfetti();
          createFirework();
-        document.addEventListener('DOMContentLoaded', () => {
-            const music = document.getElementById('backgroundMusic');
-            music.volume = 0.4;
-             music.play().catch(error => {
-                console.error("Autoplay prevented:", error);
-                 // Suggest user to interact with the page to start audio
-              //   alert("Click anywhere on the page to start the music!");
-             });
-              const urlParams = new URLSearchParams(window.location.search);
+          document.addEventListener('DOMContentLoaded', () => {
+             const greetingContainer = document.querySelector('.greeting-container');
+            const playOverlay = document.querySelector('.play-overlay');
+            const playButton = document.querySelector('.play-button');
+              const music = document.getElementById('backgroundMusic');
+               const urlParams = new URLSearchParams(window.location.search);
                 let name = urlParams.get('name');
+                 const stickyButton = document.querySelector('.sticky-button');
+
+              if(name){
+                stickyButton.style.display = 'block'
+              }
 
 
-                if (!name) {
+               playButton.addEventListener('click', function () {
+                   playOverlay.style.display = 'none';
+                 greetingContainer.style.display = 'block';
+                      music.play().catch(error => {
+                       console.error("Autoplay prevented:", error);
+                    });
+                 if (!name) {
                      name = prompt("कृप्या अपना नाम दर्ज करें\n\n👇👇👇👇👇");
                 }
 
@@ -316,7 +368,13 @@
 
                })
 
+
+                  });
+
+
+
         });
+
        function loadPhoto(event) {
             const photoContainer = document.getElementById('photo-upload-container');
             const uploadedPhoto = document.getElementById('uploaded-photo');
@@ -324,12 +382,12 @@
            uploadedPhoto.style.display = 'block';
             photoContainer.classList.add('photo-selected');
        }
-      document.addEventListener('click', function() {
-           const music = document.getElementById('backgroundMusic');
-           if (music.paused) {
-               music.play();
-            }
-        });
+
+           document.querySelector('.sticky-button').addEventListener('click', function(){
+            window.location.href = window.location.origin;
+        })
+
+
     </script>
 </body>
 </html>
