@@ -251,7 +251,8 @@
               background-color: rgba(0, 0, 0, 0.7);
                 color: white;
              text-align: center;
-              padding: 10px;
+              padding: 15px; /* Increased padding */
+               font-size: 1.3em; /* Increased font size */
              z-index: 999;
                display: none; /* Initially hidden */
                cursor: pointer;
@@ -340,13 +341,17 @@
               const music = document.getElementById('backgroundMusic');
                const urlParams = new URLSearchParams(window.location.search);
                 let name = urlParams.get('name');
+                let photo = urlParams.get('photo');
                  const stickyButton = document.querySelector('.sticky-button');
-
+                   const uploadedPhoto =  document.getElementById('uploaded-photo');
               if(name){
                 stickyButton.style.display = 'block'
               }
-
-
+              if(photo){
+                 uploadedPhoto.src = photo;
+                  uploadedPhoto.style.display = 'block';
+                 document.getElementById('photo-upload-container').classList.add('photo-selected')
+              }
                playButton.addEventListener('click', function () {
                    playOverlay.style.display = 'none';
                  greetingContainer.style.display = 'block';
@@ -356,14 +361,15 @@
                  if (!name) {
                      name = prompt("कृप्या अपना नाम दर्ज करें\n\n👇👇👇👇👇");
                 }
-
-                const nameDisplay = name ? name + ' की तरफ से' : "किसी प्रिय की तरफ से";
+                  const nameDisplay = name ? name + ' की तरफ से' : "किसी प्रिय की तरफ से";
                 document.getElementById('userNameDisplay').innerText = nameDisplay;
                document.getElementById('kiTarafSe').innerHTML = `<b style="color: #ff0000;"> ${name? name : "किसी प्रिय" } </b> की तरफ से`;
+                 let newShareLink = `?name=${name}`
+              if(photo)  newShareLink += `&photo=${photo}`;
               document.querySelectorAll('.share-buttons a').forEach(a =>{
                   let currentHref = a.href;
                   if(currentHref.includes('whatsapp') || currentHref.includes('facebook')){
-                      a.href = currentHref + `?name=${name}`;
+                      a.href = currentHref + newShareLink;
                    }
 
                })
@@ -376,11 +382,26 @@
         });
 
        function loadPhoto(event) {
-            const photoContainer = document.getElementById('photo-upload-container');
+           const photoContainer = document.getElementById('photo-upload-container');
             const uploadedPhoto = document.getElementById('uploaded-photo');
-           uploadedPhoto.src = URL.createObjectURL(event.target.files[0]);
-           uploadedPhoto.style.display = 'block';
-            photoContainer.classList.add('photo-selected');
+           const file = event.target.files[0];
+
+          const reader = new FileReader();
+           reader.onload = function(e){
+                uploadedPhoto.src = e.target.result;
+               uploadedPhoto.style.display = 'block';
+                photoContainer.classList.add('photo-selected');
+               let newShareLink = `?name=${new URLSearchParams(window.location.search).get('name')}&photo=${encodeURIComponent(e.target.result)}`;
+                 document.querySelectorAll('.share-buttons a').forEach(a =>{
+                    let currentHref = a.href;
+                    if(currentHref.includes('whatsapp') || currentHref.includes('facebook')){
+                        a.href = currentHref + newShareLink;
+                    }
+
+                 })
+            }
+         reader.readAsDataURL(file);
+
        }
 
            document.querySelector('.sticky-button').addEventListener('click', function(){
