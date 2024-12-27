@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>नया साल मुबारक हो! | Happy New Year 2024</title>
+    <meta name="description" content="नया साल मुबारक हो! | आपको नया साल की हार्दिक शुभकामनाएं। चमक और खुशी के साथ मनाएं।">
+    <meta property="og:title" content="नया साल मुबारक हो! | Happy New Year 2024">
+    <meta property="og:description" content="नए साल का स्वागत करें आशीर्वाद, खुशी और उत्सव के साथ।">
+    <meta property="og:image" content="images/new_year_share_image.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png">
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@700&display=swap" rel="stylesheet">
+    <style>
+         body {
+            background-image: url('images/animated_bg.gif');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            color: #fff;
+           
+        }
+      .confetti-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none; /* Allows interaction with elements underneath */
+        z-index: 1;
+      }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: gold;
+            border-radius: 50%;
+            animation: confettiFall linear infinite;
+             z-index: 100;
+        }
+
+       @keyframes confettiFall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+                }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                 opacity: 0.5;
+            }
+        }
+
+       h1, h2, h3 {
+           
+             text-align: center;
+            font-family: 'Baloo Bhaijaan 2', cursive;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+
+        }
+        h1 {
+             font-size: 3.5em;
+           }
+         h2{
+                font-size: 2.8em;
+           }
+           h3{
+             font-size: 2em;
+              margin-top: 10px;
+           }
+
+      .greeting-container {
+        position: relative;
+        z-index: 2;
+          padding: 20px;
+        text-align: center;
+         background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        border-radius: 10px;
+          margin: 10px auto;
+          max-width: 80%;
+            
+        }
+        
+         .share-buttons {
+           
+                display: flex;
+                justify-content: center;
+                 margin-top: 20px;
+
+            }
+            
+             .share-buttons a {
+                  background: rgba(255,255,255, 0.1);
+                  border: 1px solid rgba(255,255,255, 0.4);
+                color: white;
+                border-radius: 5px;
+                 padding: 10px 20px;
+                margin: 0 10px;
+                text-decoration: none;
+                   transition: 0.3s ease-in-out;
+            }
+          .share-buttons a:hover {
+                background: rgba(255,255,255, 0.3);
+                
+             }
+
+            .share-buttons img {
+                width: 20px;
+                height: 20px;
+                margin-right: 5px;
+                vertical-align: middle;
+            }
+
+      .firework-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+          z-index: 1;
+      }
+      .firework {
+          position: absolute;
+          border-radius: 50%;
+          background-color: gold; /* or any desired color */
+          width: 10px;
+          height: 10px;
+          animation: fireworkAnimation linear infinite;
+        }
+
+
+        @keyframes fireworkAnimation {
+             0% {
+                transform: translateY(0) scale(1) ;
+                  opacity: 1;
+              }
+
+             100% {
+                transform: translateY(-200px) scale(2) ;
+                 opacity: 0;
+             }
+           }
+
+          .floating-diya{
+           
+               position: absolute;
+                max-width: 80px;
+                 height: auto;
+                 z-index: 2;
+                 animation: floatDiya 5s ease-in-out infinite;
+                }
+
+                @keyframes floatDiya {
+                0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+                 25% { transform: translateY(-15px) translateX(10px) rotate(10deg); }
+                  50% { transform: translateY(-10px) translateX(-10px) rotate(-10deg); }
+                    75% { transform: translateY(15px) translateX(10px) rotate(10deg); }
+                }
+         .m1, .m2 {
+            position:fixed;
+              top: 10%;
+            width:auto;
+            height:auto;
+             z-index: 2;
+         }
+         .m1{left: 1%;}
+        .m2{right: 1%;}
+       #photo-upload-container {
+                margin-top: 20px;
+            }
+
+            #photo-upload-container input[type="file"] {
+                display: block;
+                margin: 10px auto;
+            }
+
+            #photo-upload-container img {
+                max-width: 150px;
+                max-height: 150px;
+                display: block;
+                margin: 10px auto;
+                border-radius: 50%;
+            }
+    </style>
+</head>
+<body>
+    <audio id="backgroundMusic" loop autoplay>
+        <source src="music/background_song.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+    <div class="confetti-container"></div>
+    <div class="firework-container"></div>
+    
+    <img src="images/decorative_element1.gif" class="m1" alt="decorative element 1">
+    <img src="images/decorative_element2.gif" class="m2" alt="decorative element 2">
+     <div class="greeting-container">
+         
+        <h1 id="userNameDisplay">
+            <script>
+                var name = prompt("कृप्या अपना नाम दर्ज करें\n\n👇👇👇👇👇");
+                var nameDisplay = name ? name + ' की तरफ से' : "किसी प्रिय की तरफ से";
+                document.write(nameDisplay);
+            </script>
+        </h1>
+        <h2>नया साल मुबारक हो!</h2>
+        <h3> आपको नया साल की हार्दिक शुभकामनाएं!</h3>
+         <img src="images/new_year_animation.gif" alt="New Year Animation" style="width: 250px; margin: 20px auto; display: block;">
+    
+        <h3>नया साल आपके जीवन में खुशियाँ लाए!</h3>
+         <p style="font-size: 16px; margin: 20px 0;">
+            <strong style="font-size: 1.2em;"> नया साल, नई उमंग, चलो मनाएं!</strong>
+            </p>
+             <p style="font-size: 18px;color:#000;">
+               <b style="color: #ff0000;"> की तरफ से - </b>
+                <script>
+                    document.write(name ? name : "किसी प्रिय");
+                </script>
+           </p>
+          <p>
+            <b style="font-size: 1.2em;">Shayari:</b> <br>
+              नया साल आया है, खुशियाँ लाया है,<br>
+                गम दूर हुआ, चलो जश्न मनाएं!
+          </p>
+     
+       <div id="photo-upload-container">
+              <label for="photo-upload" style="display: block; color: white; text-align: center;">अपनी फोटो लगाएं:</label>
+              <input type="file" id="photo-upload" accept="image/*" onchange="loadPhoto(event)" style="display: block;margin:10px auto;"/>
+              <img id="uploaded-photo" src="#" alt="Uploaded Photo" style="display:none;"/>
+        </div>
+     <div class="share-buttons">
+             <a href="whatsapp://send?text=*नया साल मुबारक हो!*  आपको नया साल की हार्दिक शुभकामनाएं! नया साल आपके जीवन में खुशियाँ लाए! नया साल, नई उमंग, चलो मनाएं! Touch this Blue Line  Enter Your Name and See Magic 👉[Your Website Link Here]" data-action="share/whatsapp/share">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/2044px-WhatsApp.svg.png" alt="WhatsApp"> शेयर करें
+            </a>
+           <a href="https://www.facebook.com/sharer/sharer.php?u=[Your Website Link Here]" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png" alt="Facebook"> शेयर करें
+            </a>
+        </div>
+
+    </div>
+ <img src="images/diya_float1.gif" class="floating-diya" style="top: 10%; left:10%"  alt="Diya">
+    <img src="images/diya_float2.gif" class="floating-diya" style="bottom: 10%; right:10%" alt="Diya">
+    <script>
+         // Function to create random confetti
+        function createConfetti() {
+            const container = document.querySelector('.confetti-container');
+            for (let i = 0; i < 150; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.animationDelay = `${Math.random() * 2}s`;
+                 confetti.style.backgroundColor =  `hsl(${Math.random() * 360}, 100%, 50%)`;
+                container.appendChild(confetti);
+            }
+          }
+           function createFirework() {
+              const container = document.querySelector('.firework-container');
+            for(let i=0; i < 10 ; i++){
+               const firework = document.createElement('div');
+                firework.classList.add('firework');
+                firework.style.left = `${Math.random() * 100}vw`;
+                firework.style.animationDelay = `${Math.random() * 5}s`;
+              firework.style.top = `${Math.random() * 50}vh`;
+             container.appendChild(firework);
+            }
+        }
+         createConfetti();
+         createFirework();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const music = document.getElementById('backgroundMusic');
+            music.volume = 0.4;
+        });
+
+        function loadPhoto(event) {
+            const uploadedPhoto = document.getElementById('uploaded-photo');
+            uploadedPhoto.src = URL.createObjectURL(event.target.files[0]);
+            uploadedPhoto.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
