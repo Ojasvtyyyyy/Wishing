@@ -230,11 +230,7 @@
 
      <div class="greeting-container">
           <h1 id="userNameDisplay" class="text-shaking">
-            <script>
-                var name = prompt("कृप्या अपना नाम दर्ज करें\n\n👇👇👇👇👇");
-                var nameDisplay = name ? name + ' की तरफ से' : "किसी प्रिय की तरफ से";
-                document.write(nameDisplay);
-            </script>
+
         </h1>
         <div id="photo-upload-container">
             <label for="photo-upload">अपनी फोटो लगाएं:</label>
@@ -248,12 +244,9 @@
         <p style="font-size: 16px; margin: 10px 0;">
             <strong style="font-size: 1.2em;">आओ मिलकर करें नए साल का स्वागत!</strong>
             </p>
-        <p  class="ki-taraf-se">
-                 <b style="color: #ff0000;">
-                  <script>
-                    document.write(name ? name : "किसी प्रिय");
-                  </script>
-                  </b> की तरफ से
+        <p  class="ki-taraf-se" id="kiTarafSe">
+
+
            </p>
         <p class="shayari-text">
             <b style="font-size: 1.2em;">Shayari:</b> <br>
@@ -302,8 +295,27 @@
              music.play().catch(error => {
                 console.error("Autoplay prevented:", error);
                  // Suggest user to interact with the page to start audio
-                 alert("Click anywhere on the page to start the music!");
+              //   alert("Click anywhere on the page to start the music!");
              });
+              const urlParams = new URLSearchParams(window.location.search);
+                let name = urlParams.get('name');
+
+
+                if (!name) {
+                     name = prompt("कृप्या अपना नाम दर्ज करें\n\n👇👇👇👇👇");
+                }
+
+                const nameDisplay = name ? name + ' की तरफ से' : "किसी प्रिय की तरफ से";
+                document.getElementById('userNameDisplay').innerText = nameDisplay;
+               document.getElementById('kiTarafSe').innerHTML = `<b style="color: #ff0000;"> ${name? name : "किसी प्रिय" } </b> की तरफ से`;
+              document.querySelectorAll('.share-buttons a').forEach(a =>{
+                  let currentHref = a.href;
+                  if(currentHref.includes('whatsapp') || currentHref.includes('facebook')){
+                      a.href = currentHref + `?name=${name}`;
+                   }
+
+               })
+
         });
        function loadPhoto(event) {
             const photoContainer = document.getElementById('photo-upload-container');
