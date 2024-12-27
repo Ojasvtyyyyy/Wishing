@@ -9,7 +9,6 @@
     <meta property="og:description" content="नए साल का स्वागत करें आशीर्वाद, खुशी और उत्सव के साथ।">
     <meta property="og:image" content="images/new_year_share_image.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@700&display=swap" rel="stylesheet">
@@ -23,7 +22,6 @@
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
             color: #fff;
-
         }
       .confetti-container {
         position: fixed;
@@ -55,30 +53,21 @@
                 opacity: 0.5;
             }
         }
-        .text-shaking {
-            animation: shake 0.5s ease-in-out infinite;
+         .text-shaking {
+            animation: subtleShake 4s ease-in-out infinite;
+             transform-origin: center;
         }
-        @keyframes shake {
-            0% { transform: translate(1px, 1px) rotate(0deg); }
-            10% { transform: translate(-1px, -2px) rotate(-1deg); }
-            20% { transform: translate(-3px, 0px) rotate(1deg); }
-            30% { transform: translate(3px, 2px) rotate(0deg); }
-            40% { transform: translate(1px, -1px) rotate(1deg); }
-            50% { transform: translate(-1px, 2px) rotate(-1deg); }
-            60% { transform: translate(-3px, 1px) rotate(0deg); }
-            70% { transform: translate(3px, 1px) rotate(-1deg); }
-            80% { transform: translate(-1px, -1px) rotate(1deg); }
-            90% { transform: translate(1px, 2px) rotate(0deg); }
-            100% { transform: translate(1px, -2px) rotate(-1deg); }
+
+        @keyframes subtleShake {
+            0% { transform: rotate(0.5deg); }
+            50% { transform: rotate(-0.5deg); }
+            100% { transform: rotate(0.5deg); }
         }
         h1, h2, h3, .year-2025 {
-
             text-align: center;
             font-family: 'Baloo Bhaijaan 2', cursive;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-             margin-bottom: 10px;
-
-
+            margin-bottom: 10px;
         }
         h1 {
             font-size: 3.5em;
@@ -192,6 +181,7 @@
            #photo-upload-container label {
                 display: block;
                  color: white;
+                  font-size: 1.2em;
                  text-align: center;
              }
             #photo-upload-container input[type="file"] {
@@ -214,10 +204,23 @@
             #photo-upload-container.photo-selected label {
             display:none;
            }
+           #photo-upload-container.photo-selected input[type="file"] {
+              display:none;
+           }
+           .ki-taraf-se {
+               font-size: 1.2em;
+               color: #fff;
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff;
+           }
+           .shayari-text {
+               font-size: 1.1em;
+              text-shadow: 0 0 5px #fff, 0 0 10px #fff;
+              line-height: 1.5;
+            }
     </style>
 </head>
 <body>
-    <audio id="backgroundMusic" loop autoplay>
+    <audio id="backgroundMusic" loop>
         <source src="music/background_song.mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
@@ -245,24 +248,24 @@
         <p style="font-size: 16px; margin: 10px 0;">
             <strong style="font-size: 1.2em;">आओ मिलकर करें नए साल का स्वागत!</strong>
             </p>
-        <p style="font-size: 18px;color:#000;">
+        <p  class="ki-taraf-se">
                  <b style="color: #ff0000;">
                   <script>
                     document.write(name ? name : "किसी प्रिय");
                   </script>
                   </b> की तरफ से
            </p>
-        <p>
+        <p class="shayari-text">
             <b style="font-size: 1.2em;">Shayari:</b> <br>
                सारा सिकवा को भुला देना New Year से पहले, <br>ज़रा सा मुस्कुरा देना न्यू ईयर से पहले। <br>ना सोचो के किस किस ने दिल दुखाया<br> सब को गले लगा लेना Happy New Year से पहले .!!
           </p>
             <div class="year-2025 text-shaking">2025</div>
         
         <div class="share-buttons">
-             <a href="whatsapp://send?text=*नया साल मुबारक हो!* नई उम्मीदें, नए सपने, नया साल मुबारक! आओ मिलकर करें नए साल का स्वागत!  Touch this Blue Line  Enter Your Name and See Magic 👉[Your Website Link Here]" data-action="share/whatsapp/share">
+             <a href="whatsapp://send?text=*नया साल मुबारक हो!* नई उम्मीदें, नए सपने, नया साल मुबारक! आओ मिलकर करें नए साल का स्वागत!  Touch this Blue Line  Enter Your Name and See Magic 👉https://nayisaal2025.netlify.app" data-action="share/whatsapp/share">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/2044px-WhatsApp.svg.png" alt="WhatsApp"> शेयर करें
             </a>
-           <a href="https://www.facebook.com/sharer/sharer.php?u=[Your Website Link Here]" target="_blank">
+           <a href="https://www.facebook.com/sharer/sharer.php?u=https://nayisaal2025.netlify.app" target="_blank">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png" alt="Facebook"> शेयर करें
             </a>
         </div>
@@ -296,22 +299,20 @@
         document.addEventListener('DOMContentLoaded', () => {
             const music = document.getElementById('backgroundMusic');
             music.volume = 0.4;
-            music.play().catch(error => {
-              console.error("Autoplay prevented:", error);
-                 // Suggest user to interact with the page to start audio 
-               alert("Click anywhere on the page to start the music!");
+             music.play().catch(error => {
+                console.error("Autoplay prevented:", error);
+                 // Suggest user to interact with the page to start audio
+                 alert("Click anywhere on the page to start the music!");
              });
-         });
-        function loadPhoto(event) {
+        });
+       function loadPhoto(event) {
             const photoContainer = document.getElementById('photo-upload-container');
-           const uploadedPhoto = document.getElementById('uploaded-photo');
+            const uploadedPhoto = document.getElementById('uploaded-photo');
            uploadedPhoto.src = URL.createObjectURL(event.target.files[0]);
            uploadedPhoto.style.display = 'block';
             photoContainer.classList.add('photo-selected');
-           
-        }
-        // To make the audio play when the user interacts
-        document.addEventListener('click', function() {
+       }
+      document.addEventListener('click', function() {
            const music = document.getElementById('backgroundMusic');
            if (music.paused) {
                music.play();
