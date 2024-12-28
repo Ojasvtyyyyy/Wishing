@@ -173,40 +173,8 @@
             z-index: 1;
             pointer-events: none; /* To prevent it from blocking interaction */
         }
-       #photo-upload-container {
-                margin-top: 10px;
-                 text-align: center;
-            }
 
-           #photo-upload-container label {
-                display: block;
-                 color: white;
-                  font-size: 1.2em;
-                 text-align: center;
-             }
-            #photo-upload-container input[type="file"] {
-                display: inline-block;
-                margin: 10px auto;
-                 background-color: white;
-                color: black;
-                padding: 5px 10px;
-                border-radius: 5px;
-            }
 
-            #photo-upload-container img {
-                max-width: 150px;
-                max-height: 150px;
-                display: block;
-                 margin: 10px auto;
-                border-radius: 50%;
-                 object-fit: cover;
-            }
-            #photo-upload-container.photo-selected label {
-            display:none;
-           }
-           #photo-upload-container.photo-selected input[type="file"] {
-              display:none;
-           }
            .ki-taraf-se {
                font-size: 1.2em;
                color: #fff;
@@ -243,23 +211,26 @@
             font-family: 'Baloo Bhaijaan 2', cursive;
            text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #0ff, 0 0 40px #0ff, 0 0 50px #0ff, 0 0 60px #0ff, 0 0 70px #0ff;
           }
-          .sticky-button {
-             position: fixed;
-             bottom: 0;
-             left: 0;
-              width: 100%;
-              background-color: rgba(0, 0, 0, 0.7);
-                color: white;
-             text-align: center;
-              padding: 15px; /* Increased padding */
-               font-size: 1.3em; /* Increased font size */
-             z-index: 999;
-               display: none; /* Initially hidden */
-               cursor: pointer;
-                 border: 2px solid white;
-                border-radius: 10px;
-               box-shadow: 0 0 10px white, 0 0 20px white;
-         }
+        .sticky-button {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 1.5em; /* Increased font size for prominence */
+            z-index: 999;
+            cursor: pointer;
+            border: 2px solid white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px white, 0 0 20px white;
+            display: none; /* Initially hidden, will be shown after play */
+        }
+           .sticky-button:hover {
+             background-color: rgba(0, 0, 0, 0.9)
+            }
     </style>
 </head>
 <body>
@@ -279,13 +250,9 @@
           <h1 id="userNameDisplay" class="text-shaking">
 
         </h1>
-        <div id="photo-upload-container">
-            <label for="photo-upload">अपनी फोटो लगाएं:</label>
-            <input type="file" id="photo-upload" accept="image/*" onchange="loadPhoto(event)" style="display: block;margin:10px auto;"/>
-            <img id="uploaded-photo" src="#" alt="Uploaded Photo" style="display:none;"/>
-        </div>
+
         <img src="images/new_year_animation.gif" alt="New Year Animation" style="width: 250px; margin: 10px auto; display: block;">
-        
+
         <h2 class="text-shaking">नया साल मुबारक हो!</h2>
         <h3 class="text-shaking"> नई उम्मीदें, नए सपने, नया साल मुबारक!</h3>
         <p style="font-size: 16px; margin: 10px 0;">
@@ -300,7 +267,7 @@
                सारा सिकवा को भुला देना New Year से पहले, <br>ज़रा सा मुस्कुरा देना न्यू ईयर से पहले। <br>ना सोचो के किस किस ने दिल दुखाया<br> सब को गले लगा लेना Happy New Year से पहले .!!
           </p>
             <div class="year-2025 text-shaking">2025</div>
-        
+
         <div class="share-buttons">
              <a href="whatsapp://send?text=*नया साल मुबारक हो!* नई उम्मीदें, नए सपने, नया साल मुबारक! आओ मिलकर करें नए साल का स्वागत!  Touch this Blue Line  Enter Your Name and See Magic 👉https://nayisaal2025.netlify.app" data-action="share/whatsapp/share">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/2044px-WhatsApp.svg.png" alt="WhatsApp"> शेयर करें
@@ -344,17 +311,8 @@
               const music = document.getElementById('backgroundMusic');
                const urlParams = new URLSearchParams(window.location.search);
                 let name = urlParams.get('name');
-                let photo = urlParams.get('photo');
                  const stickyButton = document.querySelector('.sticky-button');
-                   const uploadedPhoto =  document.getElementById('uploaded-photo');
-              if(name){
-                stickyButton.style.display = 'block'
-              }
-              if(photo){
-                 uploadedPhoto.src = decodeURIComponent(photo);
-                  uploadedPhoto.style.display = 'block';
-                 document.getElementById('photo-upload-container').classList.add('photo-selected')
-              }
+
                playButton.addEventListener('click', function () {
                    playOverlay.style.display = 'none';
                  greetingContainer.style.display = 'block';
@@ -367,8 +325,8 @@
                   const nameDisplay = name ? name + ' की तरफ से' : "किसी प्रिय की तरफ से";
                 document.getElementById('userNameDisplay').innerText = nameDisplay;
                document.getElementById('kiTarafSe').innerHTML = `<b style="color: #ff0000;"> ${name? name : "किसी प्रिय" } </b> की तरफ से`;
-                 let newShareLink = `?name=${name}`
-              if(photo)  newShareLink += `&photo=${photo}`;
+                  let newShareLink = `?name=${name}`
+
               document.querySelectorAll('.share-buttons a').forEach(a =>{
                   let currentHref = a.href;
                   if(currentHref.includes('whatsapp') || currentHref.includes('facebook')){
@@ -376,6 +334,7 @@
                    }
 
                })
+                     stickyButton.style.display = 'block'
 
 
                   });
@@ -383,30 +342,6 @@
 
 
         });
-
-       function loadPhoto(event) {
-           const photoContainer = document.getElementById('photo-upload-container');
-            const uploadedPhoto = document.getElementById('uploaded-photo');
-           const file = event.target.files[0];
-            const urlParams = new URLSearchParams(window.location.search);
-             let name = urlParams.get('name');
-          const reader = new FileReader();
-           reader.onload = function(e){
-                uploadedPhoto.src = e.target.result;
-               uploadedPhoto.style.display = 'block';
-                photoContainer.classList.add('photo-selected');
-                  let newShareLink = `?name=${name}&photo=${encodeURIComponent(e.target.result)}`;
-                 document.querySelectorAll('.share-buttons a').forEach(a =>{
-                    let currentHref = a.href;
-                    if(currentHref.includes('whatsapp') || currentHref.includes('facebook')){
-                        a.href = currentHref + newShareLink;
-                    }
-
-                 })
-            }
-         reader.readAsDataURL(file);
-
-       }
 
            document.querySelector('.sticky-button').addEventListener('click', function(){
             window.location.href = window.location.origin;
